@@ -6,6 +6,7 @@
   });*/
 
     const titleClickHandler = function(event){
+        event.preventDefault();
         const clickedElement = this;
         console.log('Link was clicked!');
         console.log(event);
@@ -18,7 +19,7 @@
         }
 
 
-      /* [IN PROOGRESS] add class 'active' to clicked link */
+      /* [DONE] add class 'active' to clicked link */
 
       console.log('clickedElement:', clickedElement);
       console.log('clickedElement (with plus): ' + clickedElement);
@@ -31,7 +32,9 @@
             activeArticle.classList.remove('active');
         }
 
-      /* get 'href' attribute from clicked link */
+      /* [DONE] get 'href' attribute from clicked link */
+      let atribute = clickedElement.getAttribute("href");
+      console.log('atribute href for clikcked object :' + atribute);
 
       /* find correct article using selector (value of 'href' attribute) */
 
