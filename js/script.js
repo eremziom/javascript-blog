@@ -40,7 +40,8 @@
       const targetArticle = document.querySelector(atribute);
       console.log('Article we want : ', targetArticle);
 
-      /* add class 'active' to the correct artcle */
+      /* [DONE] add class 'active' to the correct artcle */
+      targetArticle.classList.add('active');
   }
 
   const links = document.querySelectorAll('.titles a');
