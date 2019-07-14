@@ -6,10 +6,11 @@
   });*/
 
     const titleClickHandler = function(event){
+        const clickedElement = this;
         console.log('Link was clicked!');
         console.log(event);
 
-      /* remove class 'active' from all article links */
+      /* [DONE] remove class 'active' from all article links */
         const activeLinks = document.querySelectorAll('.titles a.active');
 
         for(let activeLink of activeLinks){
@@ -17,14 +18,18 @@
         }
 
 
-      /* add class 'active' to clicked link */
-        const activeArticles = document.querySelectorAll('.posts .post.active');
+      /* [IN PROOGRESS] add class 'active' to clicked link */
+
+      console.log('clickedElement:', clickedElement);
+      console.log('clickedElement (with plus): ' + clickedElement);
+      clickedElement.classList.add('active');
+
+      /* [DONE] remove class 'active' from all articles */
+      const activeArticles = document.querySelectorAll('.posts .post.active');
 
         for(let activeArticle of activeArticles){
             activeArticle.classList.remove('active');
         }
-
-      /* remove class 'active' from all articles */
 
       /* get 'href' attribute from clicked link */
 
