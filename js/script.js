@@ -33,10 +33,12 @@
         }
 
       /* [DONE] get 'href' attribute from clicked link */
-      let atribute = clickedElement.getAttribute("href");
+      const atribute = clickedElement.getAttribute("href");
       console.log('atribute href for clikcked object :' + atribute);
 
-      /* find correct article using selector (value of 'href' attribute) */
+      /* [DONE] find correct article using selector (value of 'href' attribute) */
+      const targetArticle = document.querySelector(atribute);
+      console.log('Article we want : ', targetArticle);
 
       /* add class 'active' to the correct artcle */
   }
