@@ -56,21 +56,30 @@
 
   function generateTitleLinks(){
 
-    /* remove contents of titleList */
+    /* [DONE] remove contents of titleList */
     const titleList = document.querySelector(optTtileListSelector);
       titleList.innerHTML = '';
 
-    /* for each article */
+    /* [DONE] for each article */
+    const articles = document.querySelectorAll(optArticleSelector);
+    for(let article of articles){
 
-      /* get the article id */
+      /* [DONE] get the article id */
+        const articleId = article.getAttribute('id');
+        console.log('got article ID: ', articleId);
 
-      /* find the list element */
+      /* [DONE] find the list element */
+      /* [DONE] get the title from the title element */
+      const articleTitle = article.querySelector(optTitleSelector).innerHTML;
+      console.log('articleTitle = ' + articleTitle);
 
-      /* get the title from the title element */
+      /* [DONE] create HTML of the link */
+      const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
+      console.log(linkHTML);
 
-      /* create HTML of the link */
-
-      /* insert link into titleList */
+      /* [IN PROGRES] insert link into titleList */
+      titleList.innerHTML = titleList.innerHTML + linkHTML;
+    }
 
   }
 
