@@ -43,13 +43,7 @@
       /* [DONE] add class 'active' to the correct artcle */
       targetArticle.classList.add('active');
   }
-
-  const links = document.querySelectorAll('.titles a');
-
-  for(let link of links){
-      link.addEventListener('click', titleClickHandler);
-  }
-
+  
   const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
     optTtileListSelector = '.titles';
@@ -62,11 +56,12 @@
 
     /* [DONE] for each article */
     const articles = document.querySelectorAll(optArticleSelector);
+    let html = '';
     for(let article of articles){
 
       /* [DONE] get the article id */
-        const articleId = article.getAttribute('id');
-        console.log('got article ID: ', articleId);
+      const articleId = article.getAttribute('id');
+      console.log('got article ID: ', articleId);
 
       /* [DONE] find the list element */
       /* [DONE] get the title from the title element */
@@ -78,10 +73,20 @@
       console.log(linkHTML);
 
       /* [IN PROGRES] insert link into titleList */
-      titleList.innerHTML = titleList.innerHTML + linkHTML;
+      html = html + linkHTML;
+      console.log(html);
     }
+
+    titleList.innerHTML = html;
 
   }
 
   generateTitleLinks();
+
+  const links = document.querySelectorAll('.titles a');
+  console.log(links);
+
+  for(let link of links){
+      link.addEventListener('click', titleClickHandler);
+  }
 }
