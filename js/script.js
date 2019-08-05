@@ -44,7 +44,8 @@
 
   const optArticleSelector = '.post',
     optTitleSelector = '.post-title',
-    optTtileListSelector = '.titles';
+    optTtileListSelector = '.titles',
+    optArticleTagsSelector = '.post-tags .list';
 
   function generateTitleLinks(){
 
@@ -70,7 +71,7 @@
       const linkHTML = '<li><a href="#' + articleId + '"><span>' + articleTitle + '</span></a></li>';
       console.log(linkHTML);
 
-      /* [IN PROGRES] insert link into titleList */
+      /* [DONE] insert link into titleList */
       html = html + linkHTML;
       console.log(html);
     }
@@ -87,4 +88,48 @@
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
   }
+
+  function generateTags(){
+    /* [DONE] find all articles */
+    const articles = document.querySelectorAll(optArticleSelector);
+  
+    /* [DONE] START LOOP: for every article: */
+    for(let article of articles){
+  
+      /* [DONE] find tags wrapper */
+      const tagsWrapper = article.querySelector(optArticleTagsSelector);
+  
+      /* [DONE] make html variable with empty string */
+      let html = '';
+  
+      /* [DONE] get tags from data-tags attribute */
+      const articleTags = article.getAttribute('data-tags');
+      console.log('tag data-tag: ' + articleTags);
+
+      /* [DONE] split tags into array */
+      const articleTagsArray = articleTags.split(' ');
+      console.log(articleTagsArray);
+  
+      /* [DONE] START LOOP: for each tag */
+      for (let tag of articleTagsArray){
+        console.log('tagi to: ' + tag);
+
+        /* [DONE] generate HTML of the link */
+        const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+        console.log(linkHTML);
+  
+        /* [DONE] add generated code to html variable */
+        html = html + linkHTML + ' ';
+  
+      /* [DONE] END LOOP: for each tag */
+      }
+  
+      /* insert HTML of all the links into the tags wrapper */
+      tagsWrapper.innerHTML = html;
+  
+    /* END LOOP: for every article: */
+    }
+  }
+  
+  generateTags();
 }
