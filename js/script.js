@@ -142,7 +142,7 @@
     const clickedElement = this;
 
     /* make a new constant "href" and read the attribute "href" of the clicked element */
-    const href = clickedElement.getAttribute('href')
+    const href = clickedElement.getAttribute('href');
 
     /* make a new constant "tag" and extract tag from the "href" constant */
     const tag = href.replace('#tag-', '');
@@ -227,7 +227,7 @@
 
     const author = href.replace('#author-', '');
 
-    const authorLinks = document.querySelectorAll('a.active[href^="#author-"]')
+    const authorLinks = document.querySelectorAll('a.active[href^="#author-"]');
 
     for(let activeLink of authorLinks){
 
@@ -256,4 +256,6 @@
 
     }
   }
+
+  addClickListenersToAuthors();
 }
