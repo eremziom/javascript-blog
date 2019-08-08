@@ -127,9 +127,7 @@
         html = html + linkHTML + ' ';
 
         // check if link is NOT in allTags already
-        console.log('allTags to: ' + allTags);
         if(!allTags.hasOwnProperty(tag)){
-          console.log('ZZZZZZZZZZZZZZZZZ ' + tag);
           // add link (generated code) to allTags object
           allTags[tag] = 1;
         } else {
@@ -150,7 +148,7 @@
 
     //add html from allTags to tagList
     //tagList.innerHTML = allTags.join(' ');
-    console.log('AAAAAAAAAAAAAAAA' + allTags);
+    console.log(allTags);
   }
   
   generateTags();
@@ -282,6 +280,7 @@
 
   //TEST
   const tablica = {};
+  console.log(tablica);
   tablica.pierwszy = 1;
   tablica.drugi = 2;
   console.log(tablica);
