@@ -77,6 +77,21 @@ body {
   font-weight: bold;
 }
 
+.list .tag-size-1 {
+  font-size: 15px;
+  color: #8080ff;
+}
+
+.list .tag-size-2 {
+  font-size: 20px;
+  color: #0000ff;
+}
+
+.list .tag-size-3 {
+  font-size: 25px;
+  color: #000080;
+}
+
 .list-horizontal li {
   display: inline-block;
 }
@@ -106,5 +121,9 @@ body {
 
 .post-tags p {
   margin: 0 10px 0 0;
+}
+
+.list.tags li {
+  display: inline-block;
 }
 /*# sourceMappingURL=style.css.map */
