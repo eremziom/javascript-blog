@@ -46,8 +46,10 @@
     optTitleSelector = '.post-title',
     optTtileListSelector = '.titles',
     optArticleTagsSelector = '.post-tags .list',
-    optArticleAuthorSelector = '.post-author';
-    //optTagListSelector = '.tags.list';
+    optArticleAuthorSelector = '.post-author',
+    //optTagListSelector = '.tags.list',
+    optCloudClassCount = '3',
+    optCloudClassPrefix = 'tag-size-';
 
   function generateTitleLinks(customSelector = ''){
 
@@ -89,6 +91,17 @@
 
   for(let link of links){
     link.addEventListener('click', titleClickHandler);
+  }
+
+  function calculateTagClass(count, params){
+
+    const normalizedCount = count - params.min;
+    const normalizedmax = params.max - params.min;
+    const percentage = normalizedCount / normalizedmax;
+    const classNumber = Math.floor(percentage * (optCloudClassCount - 1) +1 );
+
+    return classNumber;
+
   }
 
   function generateTags(){
@@ -144,13 +157,46 @@
     }
 
     // Find list of tags in right column
-    //const tagList = document.querySelector('.tags');
+    const tagList = document.querySelector('.tags');
 
-    //add html from allTags to tagList
-    //tagList.innerHTML = allTags.join(' ');
+    const tagsParams = calculateTagsParams(allTags);
+    console.log('tagsParams: ', tagsParams);
+
+    // Create variable for all links HTML code
+    let allTagsHTML = '';
+
+    //Start Loop: for each tag in allTags
+    for(let tag in allTags){
+      // Generate code of a link and add it to allTagsHTML
+      const tagLinkHTML = calculateTagClass(allTags[tag], tagsParams);
+      console.log('AAAAAAAAAAAAAAAAAAAAAA ', tagLinkHTML);
+      const classLinkHTML = optCloudClassPrefix + tagLinkHTML;
+      console.log(classLinkHTML);
+      allTagsHTML += '<li><a href="#tag-' + tag + '"' + ' class="' + classLinkHTML + '"><span>' + tag + '</span></a>' + ' (' + allTags[tag] + ')</li>' ;
+    }
+
+    //add html from allTagsHTML to tagList
+    tagList.innerHTML = allTagsHTML;
     console.log(allTags);
   }
   
+  function calculateTagsParams(tags){
+    const params = {max: 0, min: 999};
+    console.log(params);
+
+    for(let tag in tags){
+      console.log(tag + ' is used ' + tags[tag] + ' times');
+      if(tags[tag] > params.max){
+        params.max = tags[tag];
+      }
+      if(tags[tag] < params.min){
+        params.min = tags[tag];
+      }
+    }
+
+    return params;
+  }
+
   generateTags();
 
   function tagClickHandler(event){
