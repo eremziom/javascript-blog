@@ -260,7 +260,7 @@
 
   function generateAuthors(){
 
-    let allAuthors = []
+    let allAuthors = {}
 
     const articles = document.querySelectorAll(optArticleSelector);
 
@@ -273,22 +273,31 @@
       const articleAuthor = article.getAttribute('data-author');
       console.log('autor to: ' + articleAuthor);
 
-      const linkHTML = '<a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</sapn></a>';
+      const linkHTML = '<li><a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</sapn></a></li>';
       console.log(linkHTML);
 
       html = html + linkHTML;
 
-      if(allAuthors.indexOf(linkHTML) == -1){
-        allAuthors.push(linkHTML);
-        console.log(allAuthors);
+      if(!allAuthors.hasOwnProperty(articleAuthor)){
+        allAuthors[articleAuthor] = 1;
+      } else{
+        allAuthors[articleAuthor]++;
       }
-
+        console.log(allAuthors);
+      
       authorWrapper.innerHTML = html;
     }
 
     const authorList = document.querySelector(optAuthorsListSelector);
 
-    authorList.innerHTML = allAuthors.join(' ');
+    let allAuthorsHTML = '';
+
+    for(let author in allAuthors){
+      allAuthorsHTML += '<li><a href="#author-' + author + '"><span>' + author + '</sapn></a>' + ' (' + allAuthors[author] + ')</li>';
+    }
+
+    authorList.innerHTML = allAuthorsHTML;
+    
   }
 
   generateAuthors();
