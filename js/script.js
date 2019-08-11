@@ -2,7 +2,7 @@
 
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML)
-}
+};
 
 {/*document.getElementById('test-button').addEventListener('click', function(){
     const links = document.querySelectorAll('.titles a');
@@ -84,7 +84,7 @@ const templates = {
 
       /* [DONE] insert link into titleList */
       html = html + linkHTML;
-      console.log(html);
+      //console.log(html);
     }
 
     titleList.innerHTML = html;
@@ -140,7 +140,8 @@ const templates = {
         console.log('tagi to: ' + tag);
 
         /* [DONE] generate HTML of the link */
-        const linkHTML = '<li><a href="#tag-' + tag + '"><span>' + tag + '</span></a></li>';
+        const linkHTMLData = {id: 'tag-' + tag, title: tag};
+        const linkHTML = templates.articleLink(linkHTMLData);
         console.log(linkHTML);
   
         /* [DONE] add generated code to html variable */
@@ -266,7 +267,7 @@ const templates = {
 
   function generateAuthors(){
 
-    let allAuthors = {}
+    let allAuthors = {};
 
     const articles = document.querySelectorAll(optArticleSelector);
 
@@ -279,7 +280,8 @@ const templates = {
       const articleAuthor = article.getAttribute('data-author');
       console.log('autor to: ' + articleAuthor);
 
-      const linkHTML = '<li><a href="#author-' + articleAuthor + '"><span>' + articleAuthor + '</sapn></a></li>';
+      const linkHTMLData = {id: 'author-' + articleAuthor, title: articleAuthor};
+      const linkHTML = templates.articleLink(linkHTMLData);
       console.log(linkHTML);
 
       html = html + linkHTML;
@@ -289,7 +291,7 @@ const templates = {
       } else{
         allAuthors[articleAuthor]++;
       }
-        console.log(allAuthors);
+      console.log(allAuthors);
       
       authorWrapper.innerHTML = html;
     }
