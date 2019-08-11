@@ -2,7 +2,8 @@
 
 const templates = {
   articleLink: Handlebars.compile(document.querySelector('#template-article-link').innerHTML),
-  tagCloudList: Handlebars.compile(document.querySelector('#template-tag-cloud-list').innerHTML)
+  tagCloudList: Handlebars.compile(document.querySelector('#template-tag-cloud-list').innerHTML),
+  authorsList: Handlebars.compile(document.querySelector('#template-authors-list').innerHTML)
 };
 
 {/*document.getElementById('test-button').addEventListener('click', function(){
@@ -305,13 +306,16 @@ const templates = {
 
     const authorList = document.querySelector(optAuthorsListSelector);
 
-    let allAuthorsHTML = '';
+    const allAuthorsData = {authors: []};
 
     for(let author in allAuthors){
-      allAuthorsHTML += '<li><a href="#author-' + author + '"><span>' + author + '</sapn></a>' + ' (' + allAuthors[author] + ')</li>';
+      allAuthorsData.authors.push({
+        auth: author
+      })
+      console.log(allAuthorsData);
     }
 
-    authorList.innerHTML = allAuthorsHTML;
+    authorList.innerHTML = templates.authorsList(allAuthorsData);
     
   }
 
